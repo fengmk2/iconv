@@ -1,27 +1,20 @@
-# `@napi-rs/package-template`
+# `@fengmk2/iconv`
 
-![https://github.com/napi-rs/package-template/actions](https://github.com/napi-rs/package-template/workflows/CI/badge.svg)
+![https://github.com/fengmk2/iconv/actions](https://github.com/fengmk2/iconv/workflows/CI/badge.svg)
 
-> Template project for writing node packages with napi-rs.
-
-# Usage
-
-1. Click **Use this template**.
-2. **Clone** your project.
-3. Run `yarn install` to install dependencies.
-4. Run `yarn napi rename -n [@your-scope/package-name] -b [binary-name]` command under the project folder to rename your package.
+> A iconv for Node.js.
 
 ## Install this test package
 
-```
-yarn add @napi-rs/package-template
+```bash
+yarn add @fengmk2/iconv
 ```
 
 ## Ability
 
 ### Build
 
-After `yarn build/npm run build` command, you can see `package-template.[darwin|win32|linux].node` file in project root. This is the native addon built from [lib.rs](./src/lib.rs).
+After `yarn build/npm run build` command, you can see `iconv.[darwin|win32|linux].node` file in project root. This is the native addon built from [lib.rs](./src/lib.rs).
 
 ### Test
 
@@ -76,7 +69,7 @@ In `Settings -> Secrets`, add **NPM_TOKEN** into it.
 
 When you want to release the package:
 
-```
+```bash
 npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]
 
 git push
