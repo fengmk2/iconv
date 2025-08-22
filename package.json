@@ -112,21 +112,5 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
-  "packageManager": "yarn@4.9.3",
-  "optionalDependencies": {
-    "@fengmk2/iconv-win32-x64-msvc": "0.0.0",
-    "@fengmk2/iconv-darwin-x64": "0.0.0",
-    "@fengmk2/iconv-linux-x64-gnu": "0.0.0",
-    "@fengmk2/iconv-linux-x64-musl": "0.0.0",
-    "@fengmk2/iconv-linux-arm64-gnu": "0.0.0",
-    "@fengmk2/iconv-win32-ia32-msvc": "0.0.0",
-    "@fengmk2/iconv-linux-arm-gnueabihf": "0.0.0",
-    "@fengmk2/iconv-darwin-arm64": "0.0.0",
-    "@fengmk2/iconv-android-arm64": "0.0.0",
-    "@fengmk2/iconv-freebsd-x64": "0.0.0",
-    "@fengmk2/iconv-linux-arm64-musl": "0.0.0",
-    "@fengmk2/iconv-win32-arm64-msvc": "0.0.0",
-    "@fengmk2/iconv-android-arm-eabi": "0.0.0",
-    "@fengmk2/iconv-wasm32-wasi": "0.0.0"
-  }
+  "packageManager": "yarn@4.9.3"
 }
