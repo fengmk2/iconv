@@ -98,7 +98,6 @@
     "bench-node": "^0.10.0",
     "chalk": "^5.4.1",
     "husky": "^9.1.7",
-    "iconv": "^3.0.1",
     "iconv-lite": "^0.7.0",
     "lint-staged": "^16.1.2",
     "npm-run-all2": "^8.0.4",
@@ -106,6 +105,9 @@
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
+  },
+  "optionalDependencies": {
+    "iconv": "^3.0.1"
   },
   "lint-staged": {
     "*.@(js|ts|tsx)": [
