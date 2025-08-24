@@ -90,6 +90,9 @@
     ],
     "*.toml": [
       "taplo format"
+    ],
+    "*.rs": [
+      "cargo fmt --"
     ]
   },
   "ava": {
