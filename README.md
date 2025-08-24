@@ -1,78 +1,212 @@
-# `@fengmk2/iconv`
+# @fengmk2/iconv
 
 ![https://github.com/fengmk2/iconv/actions](https://github.com/fengmk2/iconv/workflows/CI/badge.svg)
+[![NPM version](https://img.shields.io/npm/v/@fengmk2/iconv.svg)](https://www.npmjs.com/package/@fengmk2/iconv)
+[![NPM downloads](https://img.shields.io/npm/dm/@fengmk2/iconv.svg)](https://www.npmjs.com/package/@fengmk2/iconv)
 
-> A iconv for Node.js.
+Fast and robust character encoding conversion library for Node.js using native Rust bindings via [napi-rs](https://napi.rs/). Significantly faster than iconv-lite with support for streaming and extensive charset compatibility.
 
-## Install this test package
+## Features
+
+- 🚀 **High Performance** - Native Rust implementation using [encoding_rs](https://github.com/hsivonen/encoding_rs)
+- 🔄 **Extensive Charset Support** - All encodings from the WHATWG Encoding Standard
+- 💪 **Type Safe** - Full TypeScript support with type definitions
+- 🎯 **Zero Copy** - Optimized Buffer handling with minimal allocations
+- 📦 **Prebuilt Binaries** - No compilation needed, works out of the box
+- 🌐 **Cross Platform** - Supports Windows, macOS, Linux, and more
+
+## Installation
 
 ```bash
+npm install @fengmk2/iconv
+# or
 yarn add @fengmk2/iconv
+# or
+pnpm add @fengmk2/iconv
 ```
 
-## Ability
+## Usage
 
-### Build
+### Basic Usage
 
-After `yarn build/npm run build` command, you can see `iconv.[darwin|win32|linux].node` file in project root. This is the native addon built from [lib.rs](./src/lib.rs).
+```javascript
+const { encode, decode } = require('@fengmk2/iconv');
 
-### Test
+// Encode string to Buffer with specified charset
+const gbkBuffer = encode('你好世界', 'GBK');
 
-With [ava](https://github.com/avajs/ava), run `yarn test/npm run test` to testing native addon. You can also switch to another testing framework if you want.
+// Decode Buffer to string with specified charset
+const text = decode(gbkBuffer, 'GBK');
+console.log(text); // '你好世界'
+```
 
-### CI
+### TypeScript Usage
 
-With GitHub Actions, each commit and pull request will be built and tested automatically in [`node@20`, `@node22`] x [`macOS`, `Linux`, `Windows`] matrix. You will never be afraid of the native addon broken in these platforms.
+```typescript
+import { encode, decode, encodeWithBuffer } from '@fengmk2/iconv';
 
-### Release
+// Encode string to Buffer
+const gbkBuffer: Buffer = encode('你好世界', 'GBK');
 
-Release native package is very difficult in old days. Native packages may ask developers who use it to install `build toolchain` like `gcc/llvm`, `node-gyp` or something more.
+// Decode Buffer to string
+const text: string = decode(gbkBuffer, 'GBK');
 
-With `GitHub actions`, we can easily prebuild a `binary` for major platforms. And with `N-API`, we should never be afraid of **ABI Compatible**.
+// Convert between charsets
+const utf8Buffer: Buffer = encodeWithBuffer(gbkBuffer, 'GBK', 'UTF-8');
+```
 
-The other problem is how to deliver prebuild `binary` to users. Downloading it in `postinstall` script is a common way that most packages do it right now. The problem with this solution is it introduced many other packages to download binary that has not been used by `runtime codes`. The other problem is some users may not easily download the binary from `GitHub/CDN` if they are behind a private network (But in most cases, they have a private NPM mirror).
+### Advanced Buffer Conversion
 
-In this package, we choose a better way to solve this problem. We release different `npm packages` for different platforms. And add it to `optionalDependencies` before releasing the `Major` package to npm.
+```javascript
+const { encodeWithBuffer } = require('@fengmk2/iconv');
 
-`NPM` will choose which native package should download from `registry` automatically. You can see [npm](./npm) dir for details. And you can also run `yarn add @napi-rs/package-template` to see how it works.
+// Convert directly from one charset to another without string intermediate
+const gbkBuffer = encode('你好世界', 'GBK');
+const big5Buffer = encodeWithBuffer(gbkBuffer, 'GBK', 'BIG5');
+const utf8Buffer = encodeWithBuffer(big5Buffer, 'BIG5', 'UTF-8');
+```
 
-## Develop requirements
+## API
 
-- Install the latest `Rust`
-- Install `Node.js@10+` which fully supported `Node-API`
-- Install `yarn@1.x`
+### `encode(input: string, charset: string): Buffer`
 
-## Test in local
+Encodes a string to a Buffer using the specified charset.
 
-- yarn
-- yarn build
-- yarn test
+- `input` - The input string to encode
+- `charset` - The target charset (case-insensitive)
+- Returns: Buffer with encoded data
 
-And you will see:
+### `decode(input: Buffer, charset: string): string`
+
+Decodes a Buffer to a string using the specified charset.
+
+- `input` - The input Buffer to decode
+- `charset` - The source charset (case-insensitive)
+- Returns: Decoded string
+
+### `encodeWithBuffer(input: Buffer, fromCharset: string, toCharset: string): Buffer`
+
+Converts a Buffer from one charset to another.
+
+- `input` - The input Buffer to convert
+- `fromCharset` - The source charset (case-insensitive)
+- `toCharset` - The target charset (case-insensitive)
+- Returns: Buffer with converted data
+
+## Supported Encodings
+
+All encodings from the [WHATWG Encoding Standard](https://encoding.spec.whatwg.org/) are supported:
+
+### Unicode
+- UTF-8, UTF-16LE, UTF-16BE
+
+### Simplified Chinese
+- GBK, GB18030, GB2312 (alias for GBK)
+
+### Traditional Chinese
+- BIG5, BIG5-HKSCS
+
+### Japanese
+- Shift_JIS, EUC-JP, ISO-2022-JP
+
+### Korean
+- EUC-KR, ISO-2022-KR
+
+### Cyrillic
+- KOI8-R, KOI8-U, Windows-1251, IBM866
+
+### Western European
+- Windows-1252, ISO-8859-1, ISO-8859-15, MacRoman
+
+### Central European
+- Windows-1250, ISO-8859-2
+
+### Arabic
+- Windows-1256, ISO-8859-6
+
+### Hebrew
+- Windows-1255, ISO-8859-8
+
+### Greek
+- Windows-1253, ISO-8859-7
+
+### Turkish
+- Windows-1254, ISO-8859-9
+
+### Vietnamese
+- Windows-1258
+
+### Thai
+- Windows-874, ISO-8859-11
+
+### Baltic
+- Windows-1257, ISO-8859-13
+
+And more! See the [full list](https://encoding.spec.whatwg.org/#encodings) for all supported encodings.
+
+## Performance
+
+This package leverages Rust's [encoding_rs](https://github.com/hsivonen/encoding_rs) library, which is optimized for performance:
+
+- **Zero-copy operations** where possible using Cow (Clone-on-Write) types
+- **SIMD acceleration** for UTF-8 validation and conversion
+- **Minimal allocations** through careful memory management
+- **Direct buffer transcoding** without intermediate string conversion
+
+Benchmarks show significant performance improvements over pure JavaScript implementations, especially for large buffers and complex encodings.
+
+## Development
+
+### Prerequisites
+
+- Node.js >= 12.22.0
+- Rust >= 1.65.0
+- yarn or npm
+
+### Building
 
 ```bash
-$ ava --verbose
+# Install dependencies
+yarn install
 
-  ✔ sync function from native code
-  ✔ sleep function from native code (201ms)
-  ─
+# Build native module
+yarn build
 
-  2 tests passed
-✨  Done in 1.12s.
+# Run tests
+yarn test
+
+# Run benchmarks
+yarn benchmark
 ```
 
-## Release package
+### Project Structure
 
-Ensure you have set your **NPM_TOKEN** in the `GitHub` project setting.
-
-In `Settings -> Secrets`, add **NPM_TOKEN** into it.
-
-When you want to release the package:
-
-```bash
-npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]
-
-git push
+```
+.
+├── src/
+│   └── lib.rs          # Rust implementation
+├── __test__/
+│   └── index.spec.ts   # Test suite
+├── wrapper.js          # Node.js wrapper with UTF-8 optimization
+├── wrapper.mjs         # ESM wrapper
+├── wrapper.d.ts        # TypeScript definitions
+└── index.js            # Main entry point with native binding loader
 ```
 
-GitHub actions will do the rest job for you.
+## CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+- **Testing** - Runs on every commit and PR across Node.js 20 & 22 on Windows, macOS, and Linux
+- **Building** - Automatically builds native binaries for all supported platforms
+- **Publishing** - Automatically publishes to npm when a new version tag is pushed
+
+## License
+
+[MIT](LICENSE)
+
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=fengmk2/iconv)](https://github.com/fengmk2/iconv/graphs/contributors)
+
+Made with [contributors-img](https://contrib.rocks).

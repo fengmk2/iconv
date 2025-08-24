@@ -1,7 +1,7 @@
 {
   "name": "@fengmk2/iconv",
   "version": "0.0.3",
-  "description": "Template project for writing node package with napi-rs",
+  "description": "Fast and robust character encoding conversion for Node.js using native Rust bindings",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -10,12 +10,22 @@
   "license": "MIT",
   "browser": "browser.js",
   "keywords": [
+    "iconv",
+    "encoding",
+    "charset",
+    "character-encoding",
+    "gbk",
+    "gb2312",
+    "big5",
+    "shift-jis",
+    "euc-kr",
+    "utf8",
+    "utf-8",
+    "conversion",
+    "transcoding",
     "napi-rs",
-    "NAPI",
-    "N-API",
-    "Rust",
-    "node-addon",
-    "node-addon-api"
+    "rust",
+    "native-binding"
   ],
   "files": [
     "index.d.ts",
