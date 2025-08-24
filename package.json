@@ -2,12 +2,13 @@
   "name": "@fengmk2/iconv",
   "version": "0.0.3",
   "description": "Fast and robust character encoding conversion for Node.js using native Rust bindings",
-  "main": "./wrapper.js",
+  "type": "module",
+  "main": "./dist/wrapper.js",
   "exports": {
     ".": {
-      "types": "./wrapper.d.ts",
-      "import": "./wrapper.mjs",
-      "require": "./wrapper.js"
+      "types": "./dist/wrapper.d.ts",
+      "import": "./dist/wrapper.js",
+      "require": "./dist/wrapper.js"
     }
   },
   "repository": {
@@ -37,15 +38,8 @@
   "files": [
     "index.d.ts",
     "index.js",
-    "browser.js",
-    "wrapper.js",
-    "wrapper.mjs",
-    "wrapper.d.ts",
-    "wrapper.d.ts.map",
-    "src/wrapper.ts",
     "iconv.*.node",
-    "iconv.wasi.cjs",
-    "iconv.wasi-browser.js"
+    "dist"
   ],
   "napi": {
     "binaryName": "iconv",
@@ -62,8 +56,7 @@
       "x86_64-unknown-freebsd",
       "aarch64-unknown-linux-musl",
       "aarch64-pc-windows-msvc",
-      "armv7-linux-androideabi",
-      "wasm32-wasip1-threads"
+      "armv7-linux-androideabi"
     ]
   },
   "engines": {
@@ -78,7 +71,7 @@
     "bench": "vitest bench",
     "build": "napi build --platform --release && npm run build:wrapper",
     "build:debug": "napi build --platform",
-    "build:wrapper": "tsup",
+    "build:wrapper": "tsc -b --clean && tsc",
     "format": "run-p format:prettier format:rs format:toml",
     "format:prettier": "prettier . -w",
     "format:toml": "taplo format",
@@ -92,6 +85,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@eggjs/tsconfig": "^3.0.0",
     "@emnapi/core": "^1.4.5",
     "@emnapi/runtime": "^1.4.5",
     "@napi-rs/cli": "^3.0.3",
@@ -106,7 +100,6 @@
     "oxlint": "^1.8.0",
     "prettier": "^3.6.2",
     "tinybench": "^5.0.0",
-    "tsup": "^8.5.0",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
   },

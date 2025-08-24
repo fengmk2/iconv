@@ -1,4 +1,4 @@
-import * as nativeBinding from './index.js'
+import * as nativeBinding from '../index.js'
 
 /**
  * Encode a string to a Buffer with the specified charset

@@ -129,4 +129,3 @@ dist
 !.yarn/versions
 /npm
 !.claude/*.json
-wrapper.*
