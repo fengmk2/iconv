@@ -36,5 +36,27 @@ export function decode(buffer, charset) {
   return nativeBinding.decode(buffer, charset)
 }
 
+export function encodeWithBuffer(buffer, fromCharset, toCharset) {
+  if (!Buffer.isBuffer(buffer)) {
+    throw new TypeError('First argument must be a Buffer')
+  }
+  if (typeof fromCharset !== 'string') {
+    throw new TypeError('Second argument must be a string')
+  }
+  if (typeof toCharset !== 'string') {
+    throw new TypeError('Third argument must be a string')
+  }
+  
+  const normalizedFromCharset = fromCharset.toLowerCase().replace(/[-_]/g, '')
+  const normalizedToCharset = toCharset.toLowerCase().replace(/[-_]/g, '')
+  
+  if (normalizedFromCharset === 'utf8' && normalizedToCharset === 'utf8') {
+    return buffer
+  }
+  
+  return nativeBinding.encodeWithBuffer(buffer, fromCharset, toCharset)
+}
+
 export const encodeNative = nativeBinding.encode
 export const decodeNative = nativeBinding.decode
+export const encodeWithBufferNative = nativeBinding.encodeWithBuffer

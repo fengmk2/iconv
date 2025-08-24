@@ -110,3 +110,4 @@ const { instance: __napiInstance, module: __wasiModule, napiModule: __napiModule
 module.exports = __napiModule.exports
 module.exports.decode = __napiModule.exports.decode
 module.exports.encode = __napiModule.exports.encode
+module.exports.encodeWithBuffer = __napiModule.exports.encodeWithBuffer

@@ -58,3 +58,4 @@ const {
 export default __napiModule.exports
 export const decode = __napiModule.exports.decode
 export const encode = __napiModule.exports.encode
+export const encodeWithBuffer = __napiModule.exports.encodeWithBuffer

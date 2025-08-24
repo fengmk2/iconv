@@ -1,5 +1,5 @@
 import test from 'ava'
-import { encode, decode, encodeNative, decodeNative } from '../wrapper.mjs'
+import { encode, decode, encodeNative, decodeNative, encodeWithBuffer, encodeWithBufferNative } from '../wrapper.mjs'
 
 test('encode and decode with GBK charset', (t) => {
   const text = '你好世界Hello World'
@@ -146,4 +146,82 @@ test('unicode contains GBK-code and ascii-code', (t) => {
   const encoded = Buffer.from([0xd6, 0xd0, 0xb9, 0xfa, 0x61, 0x62, 0x63]);
   const decoded = decode(encoded, 'GBK')
   t.is(decoded, text)
+})
+
+test('encodeWithBuffer converts between charsets', (t) => {
+  const text = '你好世界'
+  const gbkBuffer = encode(text, 'GBK')
+  
+  // Convert from GBK to BIG5
+  const big5Buffer = encodeWithBuffer(gbkBuffer, 'GBK', 'BIG5')
+  t.true(Buffer.isBuffer(big5Buffer))
+  
+  // Decode BIG5 buffer back to verify
+  const decodedText = decode(big5Buffer, 'BIG5')
+  t.is(decodedText, text)
+})
+
+test('encodeWithBuffer with UTF-8 to UTF-8 returns same buffer', (t) => {
+  const text = 'Hello World'
+  const utf8Buffer = Buffer.from(text, 'utf8')
+  
+  const result = encodeWithBuffer(utf8Buffer, 'UTF-8', 'UTF-8')
+  t.is(result, utf8Buffer) // Should be the same object reference
+})
+
+test('encodeWithBuffer from GBK to UTF-8', (t) => {
+  const text = '中文测试'
+  const gbkBuffer = encode(text, 'GBK')
+  
+  const utf8Buffer = encodeWithBuffer(gbkBuffer, 'GBK', 'UTF-8')
+  const decodedText = utf8Buffer.toString('utf8')
+  t.is(decodedText, text)
+})
+
+test('encodeWithBuffer from UTF-8 to GBK', (t) => {
+  const text = '测试文本'
+  const utf8Buffer = Buffer.from(text, 'utf8')
+  
+  const gbkBuffer = encodeWithBuffer(utf8Buffer, 'UTF-8', 'GBK')
+  const decodedText = decode(gbkBuffer, 'GBK')
+  t.is(decodedText, text)
+})
+
+test('encodeWithBuffer throws error for invalid buffer input', (t) => {
+  t.throws(
+    () => encodeWithBuffer('not a buffer' as any, 'GBK', 'UTF-8'),
+    { message: 'First argument must be a Buffer' }
+  )
+})
+
+test('encodeWithBuffer throws error for invalid fromCharset type', (t) => {
+  t.throws(
+    () => encodeWithBuffer(Buffer.from('test'), 123 as any, 'UTF-8'),
+    { message: 'Second argument must be a string' }
+  )
+})
+
+test('encodeWithBuffer throws error for invalid toCharset type', (t) => {
+  t.throws(
+    () => encodeWithBuffer(Buffer.from('test'), 'GBK', 456 as any),
+    { message: 'Third argument must be a string' }
+  )
+})
+
+test('encodeWithBufferNative works directly', (t) => {
+  const text = '测试Native功能'
+  const gbkBuffer = encode(text, 'GBK')
+  
+  const utf8Buffer = encodeWithBufferNative(gbkBuffer, 'GBK', 'UTF-8')
+  const decodedText = utf8Buffer.toString('utf8')
+  t.is(decodedText, text)
+})
+
+test('encodeWithBuffer between ISO-8859-1 and GBK', (t) => {
+  const text = 'Hello'
+  const isoBuffer = encode(text, 'ISO-8859-1')
+  
+  const gbkBuffer = encodeWithBuffer(isoBuffer, 'ISO-8859-1', 'GBK')
+  const decodedText = decode(gbkBuffer, 'GBK')
+  t.is(decodedText, text)
 })

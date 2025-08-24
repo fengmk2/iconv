@@ -395,3 +395,4 @@ if (!nativeBinding) {
 module.exports = nativeBinding
 module.exports.decode = nativeBinding.decode
 module.exports.encode = nativeBinding.encode
+module.exports.encodeWithBuffer = nativeBinding.encodeWithBuffer
