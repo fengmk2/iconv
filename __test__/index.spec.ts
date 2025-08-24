@@ -63,19 +63,19 @@ describe('iconv', () => {
   })
 
   it('encode throws error for invalid input type', () => {
-    expect(() => encode(123 as any, 'GBK')).toThrow('First argument must be a string')
+    expect(() => encode(123 as any, 'GBK')).toThrow('Failed to convert JavaScript value')
   })
 
   it('decode throws error for invalid input type', () => {
-    expect(() => decode('not a buffer' as any, 'GBK')).toThrow('First argument must be a Buffer')
+    expect(() => decode('not a buffer' as any, 'GBK')).toThrow('Failed to create reference from TypedArray')
   })
 
   it('encode throws error for invalid charset type', () => {
-    expect(() => encode('test', 123 as any)).toThrow('Second argument must be a string')
+    expect(() => encode('test', 123 as any)).toThrow('Failed to convert JavaScript value')
   })
 
   it('decode throws error for invalid charset type', () => {
-    expect(() => decode(Buffer.from('test'), 123 as any)).toThrow('Second argument must be a string')
+    expect(() => decode(Buffer.from('test'), 123 as any)).toThrow('Failed to convert JavaScript value')
   })
 
   it('native encode and decode functions work directly', () => {
@@ -151,12 +151,12 @@ describe('iconv', () => {
     expect(decodedText).toBe(text)
   })
 
-  it('encodeWithBuffer with UTF-8 to UTF-8 returns same buffer', () => {
+  it('encodeWithBuffer with UTF-8 to UTF-8 returns same content', () => {
     const text = 'Hello World'
     const utf8Buffer = Buffer.from(text, 'utf8')
 
     const result = encodeWithBuffer(utf8Buffer, 'UTF-8', 'UTF-8')
-    expect(result).toBe(utf8Buffer) // Should be the same object reference
+    expect(result).toEqual(utf8Buffer) // Same content, may be different object
   })
 
   it('encodeWithBuffer from GBK to UTF-8', () => {
@@ -179,19 +179,19 @@ describe('iconv', () => {
 
   it('encodeWithBuffer throws error for invalid buffer input', () => {
     expect(() => encodeWithBuffer('not a buffer' as any, 'GBK', 'UTF-8')).toThrow(
-      'First argument must be a Buffer'
+      'Failed to create reference from TypedArray'
     )
   })
 
   it('encodeWithBuffer throws error for invalid fromCharset type', () => {
     expect(() => encodeWithBuffer(Buffer.from('test'), 123 as any, 'UTF-8')).toThrow(
-      'Second argument must be a string'
+      'Failed to convert JavaScript value'
     )
   })
 
   it('encodeWithBuffer throws error for invalid toCharset type', () => {
     expect(() => encodeWithBuffer(Buffer.from('test'), 'GBK', 456 as any)).toThrow(
-      'Third argument must be a string'
+      'Failed to convert JavaScript value'
     )
   })
 

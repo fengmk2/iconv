@@ -10,7 +10,9 @@
       "Bash(npm run format:*)",
       "Bash(git commit:*)",
       "Bash(npm uninstall:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(yarn build:*)",
+      "Bash(yarn test)"
     ],
     "deny": [],
     "ask": []
