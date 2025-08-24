@@ -27,20 +27,7 @@ pnpm add @fengmk2/iconv
 
 ## Usage
 
-### Basic Usage
-
-```javascript
-const { encode, decode } = require('@fengmk2/iconv');
-
-// Encode string to Buffer with specified charset
-const gbkBuffer = encode('你好世界', 'GBK');
-
-// Decode Buffer to string with specified charset
-const text = decode(gbkBuffer, 'GBK');
-console.log(text); // '你好世界'
-```
-
-### TypeScript Usage
+### TypeScript
 
 ```typescript
 import { encode, decode, encodeWithBuffer } from '@fengmk2/iconv';
@@ -50,15 +37,39 @@ const gbkBuffer: Buffer = encode('你好世界', 'GBK');
 
 // Decode Buffer to string
 const text: string = decode(gbkBuffer, 'GBK');
+console.log(text); // '你好世界'
+```
 
-// Convert between charsets
-const utf8Buffer: Buffer = encodeWithBuffer(gbkBuffer, 'GBK', 'UTF-8');
+### ESM (ECMAScript Modules)
+
+```javascript
+import { encode, decode, encodeWithBuffer } from '@fengmk2/iconv';
+
+// Encode string to Buffer with specified charset
+const gbkBuffer = encode('你好世界', 'GBK');
+
+// Decode Buffer to string with specified charset
+const text = decode(gbkBuffer, 'GBK');
+console.log(text); // '你好世界'
+```
+
+### CommonJS
+
+```javascript
+const { encode, decode, encodeWithBuffer } = require('@fengmk2/iconv');
+
+// Encode string to Buffer with specified charset
+const gbkBuffer = encode('你好世界', 'GBK');
+
+// Decode Buffer to string with specified charset
+const text = decode(gbkBuffer, 'GBK');
+console.log(text); // '你好世界'
 ```
 
 ### Advanced Buffer Conversion
 
 ```javascript
-const { encodeWithBuffer } = require('@fengmk2/iconv');
+import { encode, encodeWithBuffer } from '@fengmk2/iconv';
 
 // Convert directly from one charset to another without string intermediate
 const gbkBuffer = encode('你好世界', 'GBK');
@@ -159,7 +170,7 @@ Benchmarks show significant performance improvements over pure JavaScript implem
 
 ### Prerequisites
 
-- Node.js >= 12.22.0
+- Node.js >= 20.0.0
 - Rust >= 1.65.0
 - yarn or npm
 

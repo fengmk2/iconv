@@ -2,7 +2,14 @@
   "name": "@fengmk2/iconv",
   "version": "0.0.3",
   "description": "Fast and robust character encoding conversion for Node.js using native Rust bindings",
-  "main": "index.js",
+  "main": "./wrapper.js",
+  "exports": {
+    ".": {
+      "import": "./wrapper.mjs",
+      "require": "./wrapper.js",
+      "types": "./wrapper.d.ts"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/fengmk2/iconv.git"
@@ -30,7 +37,13 @@
   "files": [
     "index.d.ts",
     "index.js",
-    "browser.js"
+    "browser.js",
+    "wrapper.js",
+    "wrapper.mjs",
+    "wrapper.d.ts",
+    "iconv.*.node",
+    "iconv.wasi.cjs",
+    "iconv.wasi-browser.js"
   ],
   "napi": {
     "binaryName": "iconv",
@@ -52,7 +65,7 @@
     ]
   },
   "engines": {
-    "node": ">= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0"
+    "node": ">= 20.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
