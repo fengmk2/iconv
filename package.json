@@ -69,7 +69,7 @@
   "scripts": {
     "artifacts": "napi artifacts",
     "bench": "vitest bench",
-    "build": "napi build --platform --release && npm run build:wrapper",
+    "build": "napi build --platform --release",
     "build:debug": "napi build --platform",
     "build:wrapper": "tsc -b --clean && tsc",
     "format": "run-p format:prettier format:rs format:toml",
