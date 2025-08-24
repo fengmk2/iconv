@@ -1,8 +1,12 @@
-import { createRequire } from 'node:module'
-const require = createRequire(import.meta.url)
-const nativeBinding = require('./index.js')
+import * as nativeBinding from './index.js'
 
-export function encode(str, charset) {
+/**
+ * Encode a string to a Buffer with the specified charset
+ * @param str - The string to encode
+ * @param charset - The target charset
+ * @returns Buffer containing encoded data
+ */
+export function encode(str: string, charset: string): Buffer {
   if (typeof str !== 'string') {
     throw new TypeError('First argument must be a string')
   }
@@ -12,6 +16,7 @@ export function encode(str, charset) {
 
   const normalizedCharset = charset.toLowerCase().replace(/[-_]/g, '')
 
+  // Optimize for UTF-8 using native Node.js Buffer
   if (normalizedCharset === 'utf8') {
     return Buffer.from(str, 'utf8')
   }
@@ -19,7 +24,13 @@ export function encode(str, charset) {
   return nativeBinding.encode(str, charset)
 }
 
-export function decode(buffer, charset) {
+/**
+ * Decode a Buffer to a string with the specified charset
+ * @param buffer - The Buffer to decode
+ * @param charset - The source charset
+ * @returns Decoded string
+ */
+export function decode(buffer: Buffer, charset: string): string {
   if (!Buffer.isBuffer(buffer)) {
     throw new TypeError('First argument must be a Buffer')
   }
@@ -29,6 +40,7 @@ export function decode(buffer, charset) {
 
   const normalizedCharset = charset.toLowerCase().replace(/[-_]/g, '')
 
+  // Optimize for UTF-8 using native Node.js Buffer
   if (normalizedCharset === 'utf8') {
     return buffer.toString('utf8')
   }
@@ -36,7 +48,14 @@ export function decode(buffer, charset) {
   return nativeBinding.decode(buffer, charset)
 }
 
-export function encodeWithBuffer(buffer, fromCharset, toCharset) {
+/**
+ * Convert a Buffer from one charset to another
+ * @param buffer - The Buffer to convert
+ * @param fromCharset - The source charset
+ * @param toCharset - The target charset
+ * @returns Buffer with converted data
+ */
+export function encodeWithBuffer(buffer: Buffer, fromCharset: string, toCharset: string): Buffer {
   if (!Buffer.isBuffer(buffer)) {
     throw new TypeError('First argument must be a Buffer')
   }
@@ -50,6 +69,7 @@ export function encodeWithBuffer(buffer, fromCharset, toCharset) {
   const normalizedFromCharset = fromCharset.toLowerCase().replace(/[-_]/g, '')
   const normalizedToCharset = toCharset.toLowerCase().replace(/[-_]/g, '')
 
+  // Optimize for UTF-8 to UTF-8 (no conversion needed)
   if (normalizedFromCharset === 'utf8' && normalizedToCharset === 'utf8') {
     return buffer
   }
@@ -57,6 +77,7 @@ export function encodeWithBuffer(buffer, fromCharset, toCharset) {
   return nativeBinding.encodeWithBuffer(buffer, fromCharset, toCharset)
 }
 
+// Export native functions directly for advanced users
 export const encodeNative = nativeBinding.encode
 export const decodeNative = nativeBinding.decode
 export const encodeWithBufferNative = nativeBinding.encodeWithBuffer

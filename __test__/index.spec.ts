@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { encode, decode, encodeNative, decodeNative, encodeWithBuffer, encodeWithBufferNative } from '../wrapper.mjs'
+import { encode, decode, encodeNative, decodeNative, encodeWithBuffer, encodeWithBufferNative } from '../wrapper.ts'
 
 describe('iconv', () => {
   it('encode and decode with GBK charset', () => {
