@@ -243,7 +243,7 @@ jobs:
         node:
           - '20'
           - '22'
-          - '24'
+          # - '24' # node:24-slim docker: no matching manifest for linux/arm/v7 in the manifest list entries.
     runs-on: ${{ contains(matrix.target, 'aarch64') && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v5

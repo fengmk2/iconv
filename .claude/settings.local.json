@@ -10,7 +10,8 @@
       "Bash(yarn test)",
       "Bash(yarn add:*)",
       "Bash(yarn benchmark)",
-      "Bash(yarn test:*)"
+      "Bash(yarn test:*)",
+      "Bash(cargo fmt:*)"
     ],
     "deny": [],
     "ask": []

@@ -24,7 +24,10 @@ pub fn encode(input: String, encoding_label: String) -> Result<Buffer> {
     if had_errors {
         return Err(Error::new(
             Status::InvalidArg,
-            format!("Encoding UTF-8 to {} had unmappable characters", encoding_label),
+            format!(
+                "Encoding UTF-8 to {} had unmappable characters",
+                encoding_label
+            ),
         ));
     }
 
@@ -62,7 +65,10 @@ pub fn encode_with_buffer(
     if had_errors {
         return Err(Error::new(
             Status::InvalidArg,
-            format!("Encoding from {} to {} had unmappable characters", from_encoding_label, to_encoding_label),
+            format!(
+                "Encoding from {} to {} had unmappable characters",
+                from_encoding_label, to_encoding_label
+            ),
         ));
     }
 
@@ -80,7 +86,10 @@ pub fn decode(input: Uint8Array, encoding_label: String) -> Result<String> {
     if had_errors {
         return Err(Error::new(
             Status::InvalidArg,
-            format!("Decoding from {} to UTF-8 had unmappable characters", encoding_label),
+            format!(
+                "Decoding from {} to UTF-8 had unmappable characters",
+                encoding_label
+            ),
         ));
     }
 
