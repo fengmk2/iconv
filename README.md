@@ -79,30 +79,33 @@ const utf8Buffer = encodeWithBuffer(big5Buffer, 'BIG5', 'UTF-8');
 
 ## API
 
-### `encode(input: string, charset: string): Buffer`
+### `encode(str: string, encoding: string): Buffer`
 
-Encodes a string to a Buffer using the specified charset.
+Encodes a string to a Buffer using the specified encoding.
 
-- `input` - The input string to encode
-- `charset` - The target charset (case-insensitive)
-- Returns: Buffer with encoded data
+- `str` - The string to encode
+- `encoding` - The target encoding label (case-insensitive, e.g., 'GBK', 'UTF-8')
+- Returns: Buffer containing encoded data
+- Throws: Error if encoding is not supported or unmappable characters are found
 
-### `decode(input: Buffer, charset: string): string`
+### `decode(buffer: Uint8Array, encoding: string): string`
 
-Decodes a Buffer to a string using the specified charset.
+Decodes a Buffer/Uint8Array to a string using the specified encoding.
 
-- `input` - The input Buffer to decode
-- `charset` - The source charset (case-insensitive)
+- `buffer` - The Buffer or Uint8Array to decode
+- `encoding` - The source encoding label (case-insensitive, e.g., 'GBK', 'UTF-8')
 - Returns: Decoded string
+- Throws: Error if encoding is not supported or unmappable characters are found
 
-### `encodeWithBuffer(input: Buffer, fromCharset: string, toCharset: string): Buffer`
+### `encodeWithBuffer(buffer: Uint8Array, fromEncoding: string, toEncoding: string): Buffer`
 
-Converts a Buffer from one charset to another.
+Converts a Buffer from one encoding to another without intermediate string conversion.
 
-- `input` - The input Buffer to convert
-- `fromCharset` - The source charset (case-insensitive)
-- `toCharset` - The target charset (case-insensitive)
+- `buffer` - The Buffer or Uint8Array to convert
+- `fromEncoding` - The source encoding label (case-insensitive)
+- `toEncoding` - The target encoding label (case-insensitive)
 - Returns: Buffer with converted data
+- Throws: Error if encoding is not supported or unmappable characters are found
 
 ## Supported Encodings
 
@@ -289,8 +292,8 @@ yarn build
 # Run tests
 yarn test
 
-# Run benchmarks
-yarn benchmark
+# Run performance benchmarks
+yarn test:performance
 ```
 
 ### Project Structure
@@ -298,13 +301,19 @@ yarn benchmark
 ```
 .
 ├── src/
-│   └── lib.rs          # Rust implementation
+│   ├── lib.rs          # Rust implementation using encoding_rs
+│   └── wrapper.ts      # TypeScript wrapper source
+├── dist/
+│   ├── wrapper.js      # Compiled CommonJS/ESM wrapper
+│   └── wrapper.d.ts    # TypeScript definitions
 ├── __test__/
-│   └── index.spec.ts   # Test suite
-├── wrapper.js          # Node.js wrapper with UTF-8 optimization
-├── wrapper.mjs         # ESM wrapper
-├── wrapper.d.ts        # TypeScript definitions
-└── index.js            # Main entry point with native binding loader
+│   └── index.spec.ts   # Test suite using Vitest
+├── performance/
+│   └── index.cjs       # Performance benchmarks
+├── index.js            # Native binding loader (ESM)
+├── Cargo.toml          # Rust dependencies
+├── package.json        # Node.js dependencies
+└── tsconfig.json       # TypeScript configuration
 ```
 
 ## CI/CD
