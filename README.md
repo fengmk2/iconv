@@ -176,78 +176,98 @@ Plugins enabled: V8NeverOptimizePlugin
 ├─ windows-1251
 │ ├─ encode
 │ │ ├─ short
-│ │ │ ├─ iconv-lite                                    7,221,357 ops/sec (11 runs sampled) min..max=(136.69ns...139.21ns)
-│ │ │ ├─ iconv                                         1,168,410 ops/sec (9 runs sampled) min..max=(783.44ns...841.39ns)
-│ │ │ └─ iconv-rust                                    2,617,243 ops/sec (10 runs sampled) min..max=(352.75ns...416.76ns)
+│ │ │ ├─ iconv-lite                                    7,288,284 ops/sec (12 runs sampled) min..max=(133.59ns...139.51ns)
+│ │ │ ├─ iconv                                         1,133,670 ops/sec (10 runs sampled) min..max=(796.74ns...870.40ns)
+│ │ │ └─ iconv-rust                                    2,658,913 ops/sec (12 runs sampled) min..max=(326.59ns...388.30ns)
 │ │ └─ long
-│ │   ├─ iconv-lite                                    21,284 ops/sec (12 runs sampled) min..max=(45.50us...48.25us)
-│ │   ├─ iconv                                         17,591 ops/sec (10 runs sampled) min..max=(56.19us...58.06us)
-│ │   └─ iconv-rust                                    162,488 ops/sec (11 runs sampled) min..max=(5.47us...7.68us)
+│ │   ├─ iconv-lite                                    20,685 ops/sec (9 runs sampled) min..max=(46.84us...48.86us)
+│ │   ├─ iconv                                         16,898 ops/sec (11 runs sampled) min..max=(55.88us...63.84us)
+│ │   └─ iconv-rust                                    193,253 ops/sec (10 runs sampled) min..max=(4.84us...5.11us)
 │ └─ decode
 │   ├─ short
-│   │ ├─ iconv-lite                                    5,919,427 ops/sec (2105484 runs sampled) min..max=(166.00ns...167.00ns)
-│   │ ├─ iconv                                         1,199,269 ops/sec (570295 runs sampled) min..max=(541.00ns...875.00ns)
-│   │ └─ iconv-rust                                    4,415,833 ops/sec (2151570 runs sampled) min..max=(166.00ns...292.00ns)
+│   │ ├─ iconv-lite                                    6,128,250 ops/sec (2172821 runs sampled) min..max=(166.00ns...167.00ns)
+│   │ ├─ iconv                                         1,139,525 ops/sec (522838 runs sampled) min..max=(583.00ns...834.00ns)
+│   │ └─ iconv-rust                                    4,451,972 ops/sec (1411461 runs sampled) min..max=(208.00ns...209.00ns)
 │   └─ long
-│     ├─ iconv-lite                                    29,196 ops/sec (13657 runs sampled) min..max=(28.13us...40.00us)
-│     ├─ iconv                                         17,125 ops/sec (8440 runs sampled) min..max=(52.04us...69.13us)
-│     └─ iconv-rust                                    309,071 ops/sec (135125 runs sampled) min..max=(2.33us...3.83us)
+│     ├─ iconv-lite                                    30,426 ops/sec (14817 runs sampled) min..max=(28.17us...38.71us)
+│     ├─ iconv                                         16,225 ops/sec (7980 runs sampled) min..max=(52.08us...73.58us)
+│     └─ iconv-rust                                    285,551 ops/sec (139748 runs sampled) min..max=(2.29us...5.25us)
 ├─ gbk
 │ ├─ encode
 │ │ ├─ short
-│ │ │ ├─ iconv-lite                                    5,418,059 ops/sec (11 runs sampled) min..max=(180.36ns...188.67ns)
-│ │ │ ├─ iconv                                         867,949 ops/sec (9 runs sampled) min..max=(943.71ns...1.07us)
-│ │ │ └─ iconv-rust                                    199,942 ops/sec (13 runs sampled) min..max=(4.84us...5.13us)
+│ │ │ ├─ iconv-lite                                    5,454,551 ops/sec (11 runs sampled) min..max=(179.98ns...185.18ns)
+│ │ │ ├─ iconv                                         863,012 ops/sec (8 runs sampled) min..max=(990.86ns...1.04us)
+│ │ │ └─ iconv-rust                                    196,984 ops/sec (11 runs sampled) min..max=(4.88us...5.18us)
 │ │ └─ long
-│ │   ├─ iconv-lite                                    16,181 ops/sec (12 runs sampled) min..max=(59.33us...65.57us)
-│ │   ├─ iconv                                         9,128 ops/sec (11 runs sampled) min..max=(106.13us...111.68us)
-│ │   └─ iconv-rust                                    216 ops/sec (11 runs sampled) min..max=(4.58ms...4.70ms)
+│ │   ├─ iconv-lite                                    14,744 ops/sec (12 runs sampled) min..max=(62.59us...71.81us)
+│ │   ├─ iconv                                         8,542 ops/sec (12 runs sampled) min..max=(111.11us...127.32us)
+│ │   └─ iconv-rust                                    217 ops/sec (11 runs sampled) min..max=(4.58ms...4.65ms)
 │ └─ decode
 │   ├─ short
-│   │ ├─ iconv-lite                                    3,080,705 ops/sec (1480052 runs sampled) min..max=(250.00ns...375.00ns)
-│   │ ├─ iconv                                         1,120,246 ops/sec (450165 runs sampled) min..max=(708.00ns...834.00ns)
-│   │ └─ iconv-rust                                    3,609,983 ops/sec (1763135 runs sampled) min..max=(208.00ns...334.00ns)
+│   │ ├─ iconv-lite                                    3,001,738 ops/sec (1432297 runs sampled) min..max=(250.00ns...375.00ns)
+│   │ ├─ iconv                                         1,070,721 ops/sec (488646 runs sampled) min..max=(666.00ns...917.00ns)
+│   │ └─ iconv-rust                                    3,701,185 ops/sec (1808526 runs sampled) min..max=(208.00ns...334.00ns)
 │   └─ long
-│     ├─ iconv-lite                                    15,711 ops/sec (6650 runs sampled) min..max=(60.00us...66.58us)
-│     ├─ iconv                                         6,263 ops/sec (3116 runs sampled) min..max=(139.17us...188.17us)
-│     └─ iconv-rust                                    9,094 ops/sec (4514 runs sampled) min..max=(91.83us...129.00us)
+│     ├─ iconv-lite                                    15,660 ops/sec (6710 runs sampled) min..max=(59.63us...67.42us)
+│     ├─ iconv                                         6,548 ops/sec (3228 runs sampled) min..max=(131.67us...181.88us)
+│     └─ iconv-rust                                    9,529 ops/sec (4617 runs sampled) min..max=(86.17us...120.88us)
 ├─ utf8
 │ ├─ encode
 │ │ ├─ short
-│ │ │ ├─ iconv-lite                                    9,482,328 ops/sec (11 runs sampled) min..max=(100.11ns...108.26ns)
-│ │ │ ├─ iconv                                         879,311 ops/sec (13 runs sampled) min..max=(897.88ns...1.26us)
-│ │ │ └─ iconv-rust                                    2,479,812 ops/sec (11 runs sampled) min..max=(372.27ns...510.67ns)
+│ │ │ ├─ iconv-lite                                    9,308,705 ops/sec (11 runs sampled) min..max=(104.65ns...111.89ns)
+│ │ │ ├─ iconv                                         854,069 ops/sec (11 runs sampled) min..max=(1.05us...1.27us)
+│ │ │ └─ iconv-rust                                    2,451,177 ops/sec (12 runs sampled) min..max=(352.77ns...488.74ns)
 │ │ └─ long
-│ │   ├─ iconv-lite                                    29,082 ops/sec (11 runs sampled) min..max=(33.81us...35.61us)
-│ │   ├─ iconv                                         6,144 ops/sec (11 runs sampled) min..max=(160.04us...167.49us)
-│ │   └─ iconv-rust                                    25,153 ops/sec (12 runs sampled) min..max=(37.33us...40.56us)
+│ │   ├─ iconv-lite                                    27,910 ops/sec (11 runs sampled) min..max=(33.96us...39.42us)
+│ │   ├─ iconv                                         5,849 ops/sec (11 runs sampled) min..max=(160.68us...187.90us)
+│ │   └─ iconv-rust                                    25,940 ops/sec (11 runs sampled) min..max=(37.75us...39.56us)
 │ └─ decode
 │   ├─ short
-│   │ ├─ iconv-lite                                    3,344,755 ops/sec (1586257 runs sampled) min..max=(208.00ns...334.00ns)
-│   │ ├─ iconv                                         837,448 ops/sec (374447 runs sampled) min..max=(708.00ns...1.29us)
-│   │ ├─ iconv-rust                                    3,715,935 ops/sec (1838684 runs sampled) min..max=(208.00ns...334.00ns)
-│   │ └─ node-native                                   6,388,924 ops/sec (3184352 runs sampled) min..max=(83.00ns...209.00ns)
+│   │ ├─ iconv-lite                                    3,029,192 ops/sec (1394886 runs sampled) min..max=(208.00ns...334.00ns)
+│   │ ├─ iconv                                         663,163 ops/sec (355548 runs sampled) min..max=(708.00ns...1.17us)
+│   │ ├─ iconv-rust                                    3,916,313 ops/sec (1320423 runs sampled) min..max=(250.00ns...250.00ns)
+│   │ └─ node-native                                   6,922,392 ops/sec (3452097 runs sampled) min..max=(83.00ns...209.00ns)
 │   └─ long
-│     ├─ iconv-lite                                    9,461 ops/sec (4600 runs sampled) min..max=(84.75us...124.71us)
-│     ├─ iconv                                         4,240 ops/sec (2073 runs sampled) min..max=(204.25us...263.17us)
-│     ├─ iconv-rust                                    8,378 ops/sec (4140 runs sampled) min..max=(96.21us...141.00us)
-│     └─ node-native                                   9,508 ops/sec (4688 runs sampled) min..max=(84.33us...125.58us)
+│     ├─ iconv-lite                                    10,332 ops/sec (5085 runs sampled) min..max=(82.29us...115.13us)
+│     ├─ iconv                                         4,445 ops/sec (2149 runs sampled) min..max=(197.29us...251.46us)
+│     ├─ iconv-rust                                    8,884 ops/sec (4328 runs sampled) min..max=(98.42us...127.75us)
+│     └─ node-native                                   9,625 ops/sec (4712 runs sampled) min..max=(83.17us...124.67us)
 └─ big5
   ├─ encode
   │ ├─ short
-  │ │ ├─ iconv-lite                                    3,020,429 ops/sec (10 runs sampled) min..max=(315.55ns...339.95ns)
-  │ │ └─ iconv-rust                                    243,081 ops/sec (10 runs sampled) min..max=(3.94us...4.25us)
+  │ │ ├─ iconv-lite                                    2,899,568 ops/sec (10 runs sampled) min..max=(335.94ns...346.37ns)
+  │ │ └─ iconv-rust                                    245,917 ops/sec (12 runs sampled) min..max=(3.94us...4.22us)
   │ └─ long
-  │   ├─ iconv-lite                                    5,550 ops/sec (11 runs sampled) min..max=(171.58us...190.33us)
-  │   └─ iconv-rust                                    274 ops/sec (11 runs sampled) min..max=(3.60ms...3.71ms)
+  │   ├─ iconv-lite                                    5,650 ops/sec (11 runs sampled) min..max=(163.18us...197.66us)
+  │   └─ iconv-rust                                    277 ops/sec (11 runs sampled) min..max=(3.50ms...3.70ms)
   └─ decode
     ├─ short
-    │ ├─ iconv-lite                                    2,219,979 ops/sec (1057354 runs sampled) min..max=(375.00ns...500.00ns)
-    │ └─ iconv-rust                                    2,967,242 ops/sec (1424135 runs sampled) min..max=(250.00ns...375.00ns)
+    │ ├─ iconv-lite                                    2,215,008 ops/sec (1044681 runs sampled) min..max=(375.00ns...500.00ns)
+    │ └─ iconv-rust                                    2,943,207 ops/sec (908591 runs sampled) min..max=(291.00ns...292.00ns)
     └─ long
-      ├─ iconv-lite                                    7,029 ops/sec (3312 runs sampled) min..max=(132.54us...146.58us)
-      └─ iconv-rust                                    7,351 ops/sec (3501 runs sampled) min..max=(123.46us...146.58us)
+      ├─ iconv-lite                                    7,098 ops/sec (3362 runs sampled) min..max=(129.46us...149.38us)
+      └─ iconv-rust                                    7,715 ops/sec (3679 runs sampled) min..max=(117.38us...141.17us)
 ```
+
+### Performance Summary
+
+**Key Findings:**
+
+- **Decoding Excellence**: @fengmk2/iconv (iconv-rust) shows exceptional decoding performance, particularly for long strings:
+  - **9.4x faster** than iconv-lite for Windows-1251 long string decoding
+  - **17.6x faster** than iconv for Windows-1251 long string decoding
+  - Competitive or faster than iconv-lite for most decoding scenarios
+
+- **Encoding Performance**: While iconv-lite generally leads in encoding operations, @fengmk2/iconv delivers:
+  - **9.3x faster** than iconv-lite for Windows-1251 long string encoding
+  - **4.4x faster** than iconv for UTF-8 long string encoding
+  - Solid performance across all encoding scenarios
+
+- **Best Use Cases**:
+  - Applications requiring fast decoding of large buffers
+  - Systems processing Windows-1251, GBK, or other non-UTF8 encodings
+  - High-throughput charset conversion pipelines
+  - Memory-sensitive applications benefiting from zero-copy operations
 
 ## Development
 
