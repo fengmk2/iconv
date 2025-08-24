@@ -9,7 +9,7 @@ version = "0.1.0"
 crate-type = ["cdylib"]
 
 [dependencies]
-encoding = "0.2"
+encoding_rs = "0.8"
 napi = "3.0.0"
 napi-derive = "3.0.0"
 

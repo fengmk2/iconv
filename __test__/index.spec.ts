@@ -225,3 +225,33 @@ test('encodeWithBuffer between ISO-8859-1 and GBK', (t) => {
   const decodedText = decode(gbkBuffer, 'GBK')
   t.is(decodedText, text)
 })
+
+test('support additional encodings with encoding_rs', (t) => {
+  // Test Shift-JIS (Japanese)
+  const japaneseText = 'こんにちは'
+  const sjisBuffer = encode(japaneseText, 'SHIFT_JIS')
+  t.true(Buffer.isBuffer(sjisBuffer))
+  const decodedJapanese = decode(sjisBuffer, 'SHIFT_JIS')
+  t.is(decodedJapanese, japaneseText)
+  
+  // Test EUC-KR (Korean)
+  const koreanText = '안녕하세요'
+  const eucKrBuffer = encode(koreanText, 'EUC-KR')
+  t.true(Buffer.isBuffer(eucKrBuffer))
+  const decodedKorean = decode(eucKrBuffer, 'EUC-KR')
+  t.is(decodedKorean, koreanText)
+  
+  // Test Windows-1252
+  const win1252Text = 'Windows-1252: àèìòù'
+  const win1252Buffer = encode(win1252Text, 'WINDOWS-1252')
+  t.true(Buffer.isBuffer(win1252Buffer))
+  const decodedWin1252 = decode(win1252Buffer, 'WINDOWS-1252')
+  t.is(decodedWin1252, win1252Text)
+  
+  // Test conversion between Japanese encodings
+  const japaneseText2 = '日本語'
+  const sjisBuffer2 = encode(japaneseText2, 'SHIFT_JIS')
+  const eucJpBuffer = encodeWithBuffer(sjisBuffer2, 'SHIFT_JIS', 'EUC-JP')
+  const decodedFromEucJp = decode(eucJpBuffer, 'EUC-JP')
+  t.is(decodedFromEucJp, japaneseText2)
+})

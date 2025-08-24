@@ -8,8 +8,9 @@ export declare function encode(input: string, charset: string): Buffer
 
 /**
  * Encode a buffer from one charset to another
- * Note: This uses UTF-8 as an intermediate format since the encoding crate
- * only supports conversions to/from UTF-8. For true direct transcoding,
- * a native iconv library would be needed.
+ *
+ * This function performs transcoding with minimal allocations by using Cow<str>
+ * from encoding_rs. While encoding_rs only supports UTF-8 as intermediate format,
+ * we avoid unnecessary String allocations when possible.
  */
 export declare function encodeWithBuffer(input: Buffer, fromCharset: string, toCharset: string): Buffer
