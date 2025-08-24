@@ -1,18 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run build:*)",
       "Bash(npm test)",
-      "Bash(npx ava:*)",
       "Bash(node:*)",
-      "Bash(git add:*)",
       "Bash(npm run lint)",
       "Bash(npm run format:*)",
       "Bash(git commit:*)",
-      "Bash(npm uninstall:*)",
-      "Bash(npm install:*)",
       "Bash(yarn build:*)",
-      "Bash(yarn test)"
+      "Bash(yarn test)",
+      "Bash(yarn add:*)",
+      "Bash(yarn benchmark)",
+      "Bash(yarn test:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,3 +1,4 @@
+// @ts-ignore - Native binding file
 import * as nativeBinding from '../index.js'
 
 /**

@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest'
+import iconvLite from 'iconv-lite'
+
 import { encode, decode, encodeNative, decodeNative, encodeWithBuffer, encodeWithBufferNative } from '../src/wrapper.ts'
 
 describe('iconv', () => {
@@ -7,6 +9,8 @@ describe('iconv', () => {
 
     const encoded = encode(text, 'GBK')
     expect(Buffer.isBuffer(encoded)).toBe(true)
+    // should be same as iconv-lite
+    expect(encoded).toEqual(iconvLite.encode(text, 'GBK'))
 
     const decoded = decode(encoded, 'GBK')
     expect(decoded).toBe(text)
