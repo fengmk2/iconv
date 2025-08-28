@@ -80,7 +80,7 @@
     "test:ui": "vitest --ui",
     "test:performance": "npm run test:copy-binding && node --allow-natives-syntax performance/index.cjs",
     "test:cjs": "npm run test:copy-binding && node performance/hello.cjs",
-    "test:copy-binding": "npm run build:wrapper && cp src/binding/iconv.darwin-arm64.node dist/binding",
+    "test:copy-binding": "npm run build:wrapper && cp src/binding/iconv.*.node dist/binding",
     "version": "napi version",
     "prepare": "husky"
   },
