@@ -53,13 +53,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eggjs/tsconfig@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@eggjs/tsconfig@npm:3.0.0"
-  checksum: 10c0/9af06cbddc9aaac8759edec8385754ba3ed600f790144cba621bcc2684a60edb5fd1e2d53bd0000c3cc464ea326697bf0c1b0fcff76285349ed4be588c56c5b2
-  languageName: node
-  linkType: hard
-
 "@emnapi/core@npm:^1.4.5":
   version: 1.4.5
   resolution: "@emnapi/core@npm:1.4.5"
@@ -274,7 +267,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fengmk2/iconv@workspace:."
   dependencies:
-    "@eggjs/tsconfig": "npm:^3.0.0"
     "@emnapi/core": "npm:^1.4.5"
     "@emnapi/runtime": "npm:^1.4.5"
     "@napi-rs/cli": "npm:^3.0.3"
