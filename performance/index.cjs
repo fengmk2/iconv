@@ -4,7 +4,7 @@ const iconv = require("iconv")
 const iconvLite = require("iconv-lite")
 const { Suite } = require("bench-node")
 
-const iconvRust = require("../dist/wrapper")
+const iconvRust = require("..")
 
 const suite = new Suite({
   pretty: true,

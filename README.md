@@ -55,6 +55,8 @@ console.log(text); // '你好世界'
 
 ### CommonJS
 
+Node.js >= 20.19.0 is required, support `require(esm)` by [default](https://nodejs.org/en/blog/release/v20.19.0).
+
 ```javascript
 const { encode, decode, encodeWithBuffer } = require('@fengmk2/iconv');
 
