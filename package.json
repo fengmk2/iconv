@@ -3,8 +3,6 @@
   "version": "0.0.5",
   "description": "Fast and robust character encoding conversion for Node.js using native Rust bindings",
   "type": "module",
-  "main": "./dist/wrapper.js",
-  "types": "./dist/wrapper.d.ts",
   "exports": {
     ".": {
       "types": "./dist/wrapper.d.ts",
