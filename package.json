@@ -3,12 +3,10 @@
   "version": "0.0.5",
   "description": "Fast and robust character encoding conversion for Node.js using native Rust bindings",
   "type": "module",
-  "main": "./dist/wrapper.js",
   "exports": {
     ".": {
       "types": "./dist/wrapper.d.ts",
-      "import": "./dist/wrapper.js",
-      "require": "./dist/wrapper.js"
+      "import": "./dist/wrapper.js"
     }
   },
   "repository": {
@@ -59,7 +57,7 @@
     ]
   },
   "engines": {
-    "node": ">= 20.0.0"
+    "node": ">= 20.19.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -70,7 +68,7 @@
     "bench": "vitest bench",
     "build": "napi build --platform --release --esm",
     "build:debug": "napi build --platform --esm",
-    "build:wrapper": "tsc -b --clean && tsc",
+    "build:wrapper": "tsdown",
     "format": "run-p format:prettier format:rs format:toml",
     "format:prettier": "prettier . -w",
     "format:toml": "taplo format",
@@ -80,12 +78,13 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
-    "test:performance": "node --allow-natives-syntax performance/index.cjs",
+    "test:performance": "npm run test:copy-binding && node --allow-natives-syntax performance/index.cjs",
+    "test:cjs": "npm run test:copy-binding && node performance/hello.cjs",
+    "test:copy-binding": "npm run build:wrapper && cp iconv.*.node dist",
     "version": "napi version",
     "prepare": "husky"
   },
   "devDependencies": {
-    "@eggjs/tsconfig": "^3.0.0",
     "@emnapi/core": "^1.4.5",
     "@emnapi/runtime": "^1.4.5",
     "@napi-rs/cli": "^3.0.3",
@@ -102,6 +101,7 @@
     "npm-run-all2": "^8.0.4",
     "oxlint": "^1.8.0",
     "prettier": "^3.6.2",
+    "tsdown": "^0.14.2",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
   },

@@ -203,7 +203,7 @@ jobs:
             target: x86_64-apple-darwin
             architecture: x64
         node:
-          - '20'
+          - '20.19.0'
           - '22'
           - '24'
     runs-on: ${{ matrix.settings.host }}
@@ -241,7 +241,7 @@ jobs:
           - aarch64-unknown-linux-musl
           - armv7-unknown-linux-gnueabihf
         node:
-          - '20'
+          - '20.19.0'
           - '22'
           # - '24' # node:24-slim docker: no matching manifest for linux/arm/v7 in the manifest list entries.
     runs-on: ${{ contains(matrix.target, 'aarch64') && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
@@ -345,3 +345,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  performance:
+    name: Performance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - name: Install
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Test cjs
+        run: yarn test:cjs
+      - name: Test performance
+        run: yarn test:performance
