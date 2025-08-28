@@ -1,6 +1,6 @@
 {
   "name": "@fengmk2/iconv",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Fast and robust character encoding conversion for Node.js using native Rust bindings",
   "type": "module",
   "exports": {
