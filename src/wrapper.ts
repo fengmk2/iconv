@@ -1,5 +1,5 @@
 // @ts-ignore - Native binding file
-import * as nativeBinding from './binding/index.js'
+import * as nativeBinding from '../index.js'
 
 /**
  * Encode a string to a Buffer with the specified encoding label

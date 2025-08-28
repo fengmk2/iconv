@@ -36,6 +36,8 @@
     "native-binding"
   ],
   "files": [
+    "index.d.ts",
+    "index.js",
     "dist"
   ],
   "napi": {
@@ -66,8 +68,8 @@
   "scripts": {
     "artifacts": "napi artifacts",
     "bench": "vitest bench",
-    "build": "napi build --platform --release --esm -o src/binding",
-    "build:debug": "napi build --platform --esm -o src/binding",
+    "build": "napi build --platform --release --esm",
+    "build:debug": "napi build --platform --esm",
     "build:wrapper": "tsdown",
     "format": "run-p format:prettier format:rs format:toml",
     "format:prettier": "prettier . -w",
@@ -80,7 +82,7 @@
     "test:ui": "vitest --ui",
     "test:performance": "npm run test:copy-binding && node --allow-natives-syntax performance/index.cjs",
     "test:cjs": "npm run test:copy-binding && node performance/hello.cjs",
-    "test:copy-binding": "npm run build:wrapper && cp src/binding/iconv.*.node dist/binding",
+    "test:copy-binding": "npm run build:wrapper && cp iconv.*.node dist",
     "version": "napi version",
     "prepare": "husky"
   },
