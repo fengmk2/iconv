@@ -17,6 +17,7 @@ env:
       - .editorconfig
       - docs/**
   pull_request: null
+  merge_group: null
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
