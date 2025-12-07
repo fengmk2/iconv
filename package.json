@@ -92,7 +92,7 @@
     "@tybys/wasm-util": "^0.10.0",
     "@types/iconv": "^3",
     "@types/node": "^24.3.0",
-    "@vitest/ui": "^3.2.4",
+    "@vitest/ui": "^4.0.0",
     "bench-node": "^0.10.0",
     "chalk": "^5.4.1",
     "husky": "^9.1.7",
@@ -103,7 +103,7 @@
     "prettier": "^3.6.2",
     "tsdown": "^0.14.2",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.0"
   },
   "optionalDependencies": {
     "iconv": "^3.0.1"
